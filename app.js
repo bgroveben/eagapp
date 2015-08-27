@@ -12,7 +12,7 @@ var app = express();
 
 
 /* For more info on routing, go to http://expressjs.com/guide/routing.html */
-/* The following code illustrates some example routes in an app. */
+/* The following code illustrates some example routes in an app. 
 
 // respond with "Hello World!" on the homepage:
 app.get('/', function (req, res) {
@@ -33,6 +33,7 @@ app.put('/user', function (req, res) {
 app.delete('/user', function (req, res) {
     res.send('Got a DELETE request at /user');
 });
+*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,6 +46,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+/* Serving files, such as images, CSS, JavaScript, and other static files is accomplished with built-in middleware in Express: 
+express.static
+// For example, if you keep your images, CSS, and JavaScript files in a directory named 'public', you can do this:
+app.use(express.static('public'));
+
+// If you want to use multiple directories as static asset directories, you can call the express.static middleware multiple times:
+app.use(express.static('public'));
+app.use(express.static('files'));
+// The files will be looked up in the order the static directories were set using the express.static middleware.
+
+// If you want to create a "virtual" (since the path does not actually exist in the system) path prefix for the files served
+// by express.static, you can specify a mount path (http://expressjs.com/4x/api.html#app.use) for the static directory:
+app.use('/static', express.static('public'));
+
+*/
 
 app.use('/', routes);
 app.use('/users', users);
